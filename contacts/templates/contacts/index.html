@@ -1,27 +1,27 @@
 {% extends 'base.html' %}
 
 {%block conteudo%}
-    <h1 class="mt-5">Minha agenda</h1>
+  <h1 class="mt-5">My contacts</h1>
 
     <table class="table">
       <thead>
         <tr>
-          <th>Nome</th>
-          <th>Sobrenome</th>
-          <th>Telefone</th>
-          <th>Categoria</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Phone</th>
+          <th>Category</th>
         </tr>
       </thead>
       <tbody>
       {% for contato in contatos %}
-        {%  if contato.mostrar %}
+        {%  if contato.visible %}
             <tr>
               <td>
-                <a href="{% url 'ver_contato' contato.id %}">{{ contato.nome }}</a>
+                <a href="{% url 'contacts:view_contact' contato.id %}">{{ contato.first_name }}</a>
               </td>
-              <td>{{ contato.sobrenome }}</td>
-              <td>{{ contato.telefone }}</td>
-              <td>{{ contato.categoria }}</td>
+              <td>{{ contato.last_name }}</td>
+              <td>{{ contato.phone }}</td>
+              <td>{{ contato.category }}</td>
             </tr>
         {% endif%}
       {% endfor %}
@@ -37,4 +37,3 @@
   </nav>
 
 {%endblock%}
-

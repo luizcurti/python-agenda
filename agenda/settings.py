@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'contatos.apps.ContatosConfig',
+    'contacts.apps.ContactsConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -123,8 +124,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'templates/static')
 ]
 
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
-MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+# Prevent warnings about default primary key field type
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Mensagens
 from django.contrib.messages import constants

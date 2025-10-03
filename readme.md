@@ -1,48 +1,92 @@
 ## AgendaPython
 
 AgendaPython is a contact management application developed with Python and Django, using SQLite as the database.
+## Agenda (AgendaPython)
 
-# Features
-Contact Management: Allows adding, editing, and deleting contacts.
+This project is a simple contact management application built with Python and Django, using SQLite as the default database.
 
-Photo Upload: Supports uploading photos for each contact, storing them in the media/photos/ directory.
+Main features
+- Manage contacts (create, edit, delete)
+- Photo upload per contact (stored under `media/`)
 
-# Project Structure
-* agenda/: Contains the main configurations of the Django project.
-* contacts/: Includes the application responsible for managing contacts.
-* media/photos/: Directory where contact photos are stored.
-* templates/: Contains the HTML templates used for rendering the pages.
-* db.sqlite3: SQLite database storing the application data.
-* manage.py: Django management script for running administrative commands.
+Project layout
+- `agenda/`: Django project settings
+- `contacts/`: Django app with models, views, templates and API
+- `templates/`: HTML templates
+- `media/`: file uploads
+- `db.sqlite3`: local SQLite database file
+- `manage.py`: Django management script
 
-# Prerequisites
-* Python 3.x
-* Django
-* SQLite
+Prerequisites
+- Python 3.8+ (3.9 recommended)
 
-## How to Run
+Development setup
 
-1. Clone the repository:
-* git clone https://github.com/luizcurti/agendaPython.git
+1. Clone the repository
 
-2. Navigate to the project directory:
-* cd agendaPython
+```bash
+git clone https://github.com/luizcurti/python-agenda.git
+cd python-agenda
+```
 
-3. Install the dependencies:
-* pip install django
+2. Create and activate a virtual environment
 
-4. Run database migrations:
-* python manage.py migrate
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
 
-5. Start the development server:
-* python manage.py runserver
+3. Install dependencies
 
-Access the application in your browser at http://127.0.0.1:8000/.
+```bash
+pip install -r requirements.txt
+```
 
-## Notes
-Ensure that the media/photos/ directory has the appropriate read and write permissions, allowing the upload and display of contact photos.
+4. Apply database migrations
 
-To add new contacts, use the Django admin interface at http://127.0.0.1:8000/admin/ and register a superuser.
+```bash
+python manage.py migrate
+```
 
-## Contributions
-Contributions are welcome! Feel free to open issues or submit pull requests with improvements and bug fixes.
+5. (Optional) Create a superuser to access the admin
+
+```bash
+python manage.py createsuperuser
+```
+
+6. Run the development server
+
+```bash
+python manage.py runserver
+```
+
+Open http://127.0.0.1:8000/ in your browser. The admin is available at `/admin/`.
+
+Serving media files in development
+
+`MEDIA_URL` and `MEDIA_ROOT` are configured in `agenda/settings.py`. The project is set up to serve media files when `DEBUG=True` via `agenda/urls.py`, so no additional configuration is required other than ensuring `media/` is writable.
+
+Running tests
+
+```bash
+python manage.py test
+```
+
+API (REST)
+
+Basic API endpoints implemented using Django REST Framework:
+- List/Create: `GET/POST /api/contacts/`
+- Retrieve: `GET /api/contacts/<id>/`
+
+CI
+
+A GitHub Actions workflow is included at `.github/workflows/ci.yml` which runs migrations and tests on push/PR to `main`.
+
+Notes and recommendations
+-- You may want to make `Contact.photo` nullable (`null=True`) if you want the DB to allow explicit NULL values for that field — I can make that change and add the migration upon request.
+- It's recommended to set `DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'` in `agenda/settings.py` to silence warnings.
+- Dependencies are listed in `requirements.txt`.
+
+Contributing
+
+PRs and issues are welcome. If you want, I can open a PR with the changes I made (API, tests, CI, README).

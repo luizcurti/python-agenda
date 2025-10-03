@@ -1,3 +1,7 @@
-from django.test import TestCase
+"""Placeholder module: original tests moved to `contacts.tests`.
 
-# Create your tests here.
+This file exists temporarily to avoid test-discovery import errors during the app rename.
+"""
+
+def test_placeholder():
+	assert True

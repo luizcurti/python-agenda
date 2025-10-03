@@ -5,7 +5,7 @@
 
 <head>
 
-   <title>Agenda</title>
+  <title>Contacts</title>
 
   {% include 'parciais/_head.html' %}
 
@@ -21,13 +21,13 @@
       <div class="col-lg-12">
 
       <br><br>
-      <form method="get" action="{% url 'busca' %}">
+  <form method="get" action="{% url 'contacts:search' %}">
         <div class="form-group row">
           <div class="col-12">
             <input class="form-control"
                    type="search" value="{{ request.GET.termo }}"
                    id="search-input"
-                   placeholder="Digite sua pesquisa"
+                   placeholder="Type your search"
                    name="termo">
             {% if messages %}
             <br>
